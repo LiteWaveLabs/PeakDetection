@@ -11,12 +11,12 @@ import java.util.Map;
 public class ElementFinder {
 
 	public static ArrayList<PeakLabel> mySQLHandler(double wavelenght,
-			int numberOfElements) {
+			int numberOfElements, double maxOffset) {
 
 		ArrayList<PeakLabel> fArrayList = new ArrayList<PeakLabel>();
 
 		final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-		final String DB_URL = "jdbc:mysql://simplescopedb.tunw.net/ASD";
+		final String DB_URL = "jdbc:mysql://simplescopedb.tunw.net/ASD3";
 
 		// Database credentials
 		final String USER = "simplescope";
@@ -43,9 +43,11 @@ public class ElementFinder {
 				// Retrieve by column name
 				int intensity = rs.getInt("intensity");
 				String element = rs.getString("element");
-
-				PeakLabel newLabel = new PeakLabel(intensity, element);
-				fArrayList.add(newLabel);
+                double actualWavelength = rs.getFloat("wavelength");
+				PeakLabel newLabel = new PeakLabel(intensity, element, actualWavelength);
+				if (actualWavelength < wavelenght + maxOffset && actualWavelength > wavelenght - maxOffset) {
+					fArrayList.add(newLabel);
+				}
 			}
 
 			// Clean-up environment

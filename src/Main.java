@@ -9,8 +9,10 @@ import java.util.Map;
 public class Main {
 	public static void main(String[] args) throws IOException {
 
-		double threshold = 500.0;
+		double threshold = 400.0;
+		double maxOffset = 0.3;
 		int elementsPerPeak = 5;
+		
 
 		List<Double> valueX = new ArrayList<Double>();
 		List<Double> valueY = new ArrayList<Double>();
@@ -28,10 +30,10 @@ public class Main {
 				double wavelenght = valueX.get(value);
 				System.out.println(wavelenght);
 				ArrayList<PeakLabel> label = ElementFinder.mySQLHandler(
-						wavelenght, elementsPerPeak);
+						wavelenght, elementsPerPeak, maxOffset);
 				
-				for (int i = 0; i < elementsPerPeak; i++) {
-					System.out.println(i + ". Element: " + label.get(i).getElement() + "    Intensität: " + label.get(i).getIntensity());
+				for (int i = 0; i < label.size(); i++) {
+					System.out.println(i + ". Element: " + label.get(i).getElement() + "    Intensität: " + label.get(i).getIntensity()+ "    Wellenlänge: " + label.get(i).getWavelength());
 				}
 			}
 		}
