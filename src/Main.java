@@ -10,7 +10,8 @@ import java.util.Map;
 public class Main {
 	 public static void main(String[] args) throws IOException {
 		 
-		 double threshold = 500.0;
+		 double threshold = 1000.0;
+		 int elementsPerPeak = 5;
 		 
 		 List<Double> valueX = new ArrayList<Double>();
 	     List<Double> valueY = new ArrayList<Double>();
@@ -26,9 +27,13 @@ public class Main {
 		 {
 			 Double peak = maxima.get(value);
 			 if (peak != null) {
-				 System.out.println(valueX.get(value));
+				 double wavelenght = valueX.get(value);
+				 System.out.println(wavelenght);
+				 System.out.println(ElementFinder.mySQLHandler(wavelenght, elementsPerPeak));
 			 }
 		 }
+		 
+		 
 	 }
 
 
