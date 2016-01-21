@@ -5,6 +5,8 @@ import java.util.Map;
 
 public abstract class LiteWaveUtils {
 
+	
+	//peak detection code by tiraeth (https://gist.github.com/tiraeth/1306602)
 	public static <U> List<Map<U, Double>> peakDetection(List<Double> values,
 			Double delta, List<U> indices) {
 		assert (indices != null);

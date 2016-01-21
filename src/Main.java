@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +15,8 @@ public class Main {
 		int elementsPerPeak = 5;
 		
 
-		List<Double> valueX = new ArrayList<Double>();
-		List<Double> valueY = new ArrayList<Double>();
+		LinkedList<Double> valueX = new LinkedList<Double>();
+		LinkedList<Double> valueY = new LinkedList<Double>();
 
 		valueX = parseFile("outputX.txt");
 		valueY = parseFile("outputY.txt");
@@ -39,11 +40,11 @@ public class Main {
 		}
 	}
 
-	public static List<Double> parseFile(String fileName) throws IOException {
+	public static LinkedList<Double> parseFile(String fileName) throws IOException {
 
 		BufferedReader br = new BufferedReader(new FileReader(fileName));
 		String line = null;
-		List<Double> outputList = new ArrayList<Double>();
+		LinkedList <Double> outputList = new LinkedList <Double>();
 		try {
 			line = br.readLine();
 			while (line != null) {
